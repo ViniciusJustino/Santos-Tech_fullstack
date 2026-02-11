@@ -1,10 +1,63 @@
-const diretorio = require('path');
-const models_usuarios = require('../models/usuario');
+let usuarios = [
+    {
+        id: 1, 
+        nome:'Joquim da silva', 
+        idade: 45, 
+        email: 'joa.quim@email.com', 
+        senha:'', 
+        admin_id: null
+    },
+    {
+        id: 2, 
+        nome:'Vinicius', 
+        idade: 26, 
+        email: 'vini.nicius@email.com', 
+        senha:'', 
+        admin_id: 1 
+    }
+];
 
-module.exports.getHome = (req, res) => {
-    res.sendFile(diretorio.resolve(__dirname + '/../pages/home.html'));
-};
+class usuario{  
+    static getUsuarios()
+    {
+        return usuarios;
+    }
 
-module.exports.getUsuariosCadastrados = (req, res) => {
-    res.json(models_usuarios.getUsuarios());
-};
+    static createUsuario(usuario)
+    {
+        if(!usuario)
+            return null;
+
+        if(usuarios.findIndex(usuariosExistentes => usuariosExistentes.id == usuario.id) === -1)
+        {
+            const novoUsuario = {
+                id: usuarios.length() + 1,
+                nome: usuario.nome,
+                idade: usuario.idade,
+                email: usuario.email,
+                senha: usuario.senha,
+                admin_id: usuario.admin_id
+            }
+
+            usuarios.push(novoUsuario);
+            
+            return usuarios;
+        }
+    }
+
+    static deleteUsuario(id)
+    {
+        let index = parseInt(id);
+
+        if(isNaN(index))
+            return null;
+
+
+        if(usuarios.findIndex(usuario => usuario.id == index) !== -1)
+        {
+            return usuarios.slice(index, 1);
+        }
+    }
+}
+
+module.exports = usuario;

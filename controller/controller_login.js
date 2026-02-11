@@ -1,10 +1,11 @@
-const diretorio = require('path');
-const models_usuarios = require('../models/usuario');
+const path = require('path')
 
-module.exports.getHome = (req, res) => {
-    res.sendFile(diretorio.resolve(__dirname + '/../pages/home.html'));
+
+module.exports.postUsuario = (req, res) => {
+    const {username, password , info_extra} = req.body;
+    console.log(username, password, info_extra);
 };
 
-module.exports.getUsuariosCadastrados = (req, res) => {
-    res.json(models_usuarios.getUsuarios());
-};
+module.exports.getLogin = (req, res) =>{
+    res.sendFile(path.resolve(__dirname + '/../pages/login/login.html'));
+}

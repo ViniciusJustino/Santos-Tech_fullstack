@@ -13,7 +13,7 @@ rota.use(helmet());
 
 rota.use(rotas.json());
 
-rota.use(rotas.static(diretorio.resolve(__dirname + '/pages')));
+rota.use(rotas.static(diretorio.join(__dirname, '/pages')));
 
 const porta = '8080';
 
