@@ -1,23 +1,10 @@
-class usuario{
-    id;
-    nome;
-    email;
-    senha;
-    ativo
-    admin_id;
+const diretorio = require('path');
+const models_usuarios = require('../models/usuario');
 
-    constructor(_id){ this.id = _id}
-}
+module.exports.getHome = (req, res) => {
+    res.sendFile(diretorio.resolve(__dirname + '/../pages/home.html'));
+};
 
-class admin{
-    id;
-    permissoes = {
-        criar_usuarios: false,
-        criar_exercicios: false,
-        criar_turma: false
-    };
-
-    constructor(){}
-}
-
-module.exports = { usuario: usuario, admin: admin };
+module.exports.getUsuariosCadastrados = (req, res) => {
+    res.json(models_usuarios.getUsuarios());
+};
