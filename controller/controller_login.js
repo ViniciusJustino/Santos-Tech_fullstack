@@ -1,9 +1,24 @@
-const path = require('path')
+const path = require('path');
+const models_usuarios = require('../models/usuario')
 
 
 module.exports.postUsuario = (req, res) => {
-    const {username, password , info_extra} = req.body;
-    console.log(username, password, info_extra);
+    const {username, password } = req.body;
+    console.log(username, password);
+
+    if(models_usuarios.getUsuarios().findIndex( 
+        usuario => usuario.email === username && usuario.senha === password  ) !== -1)
+        {
+            console.log('passou aqui')
+            res.redirect('/home');
+        }
+        else{
+            res.send('Usuário ou senha incorretos');
+            setTimeout(() => {
+                res.redirect('/');
+            }, 2000);
+        }
+
 };
 
 module.exports.getLogin = (req, res) =>{

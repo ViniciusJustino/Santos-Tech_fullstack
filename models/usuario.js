@@ -4,7 +4,7 @@ let usuarios = [
         nome:'Joquim da silva', 
         idade: 45, 
         email: 'joa.quim@email.com', 
-        senha:'', 
+        senha:'123456', 
         admin_id: null
     },
     {

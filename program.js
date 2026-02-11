@@ -20,6 +20,8 @@ const porta = '8080';
 rota.get('/', controller_login.getLogin);
 
 rota.post('/login', controller_login.postUsuario);
+rota.get('/home', controller_home.getHome);
+
 rota.get('/usuarios', controller_home.getUsuariosCadastrados);
 
 rota.listen(porta, () => {
