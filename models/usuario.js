@@ -1,23 +1,14 @@
-let usuarios = [
-    {
-        id: 1, 
-        nome:'Joquim da silva', 
-        idade: 45, 
-        email: 'a', 
-        senha:'123456', 
-        admin_id: null
-    },
-    {
-        id: 2, 
-        nome:'Vinicius', 
-        idade: 26, 
-        email: 'vini.nicius@email.com', 
-        senha:'', 
-        admin_id: 1 
-    }
-];
+const student = require('./aluno');
+const database = require('../db/database');
 
 class usuario{  
+    listStudent;
+
+    constructor()
+    {
+        this.listStudent = database.conexao().query('SELECT * FROM students');
+    }
+
     static getUsuarios()
     {
         return usuarios;

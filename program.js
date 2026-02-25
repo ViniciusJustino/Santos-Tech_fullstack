@@ -15,16 +15,15 @@ rota.use(session({
 
 rota.use(rotas.urlencoded({extended: true}));
 const diretorio = require('path');
-
-//onst helmet = require('helmet');
+const helmet = require('helmet');
 const controller_home = require('./controller/controller_home');
 const controller_login = require('./controller/controller_login');
+const database = require('./db/database');
+const auth = require('./middleware/auth');
 
-const auth = require('./middleware/auth')
+const pool = database.conexao();
 
-
-//rota.use(helmet());
-
+rota.use(helmet());
 
 rota.use(rotas.static(diretorio.join(__dirname, '/pages')));
 
