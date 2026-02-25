@@ -3,7 +3,7 @@ let usuarios = [
         id: 1, 
         nome:'Joquim da silva', 
         idade: 45, 
-        email: 'joa.quim@email.com', 
+        email: 'a', 
         senha:'123456', 
         admin_id: null
     },

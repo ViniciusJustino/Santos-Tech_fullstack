@@ -9,11 +9,20 @@ module.exports.postUsuario = (req, res) => {
     if(models_usuarios.getUsuarios().findIndex( 
         usuario => usuario.email === username && usuario.senha === password  ) !== -1)
         {
-            console.log('passou aqui')
-            res.redirect('/home');
+            req.session.save(
+                (erro) => {
+
+                    if(erro)return res.statua(401);
+
+                    req.session.logado = true;
+                    res.redirect('/home');
+                }
+            );
+   
         }
         else{
             res.send('Usuário ou senha incorretos');
+            
             setTimeout(() => {
                 res.redirect('/');
             }, 2000);
