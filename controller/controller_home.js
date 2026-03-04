@@ -1,10 +1,12 @@
 const diretorio = require('path');
-const models_usuarios = require('../models/usuario');
+//const models_usuarios = require('../models/usuario');
 
 module.exports.getHome = (req, res) => {
-    res.sendFile(diretorio.resolve(__dirname + '/home/home.html'));
+    res.sendFile(diretorio.resolve(__dirname + '/../pages/home/home.html'));
+
+    
 };
 
-module.exports.getUsuariosCadastrados = (req, res) => {
+/*module.exports.getUsuariosCadastrados = (req, res) => {
     res.json(models_usuarios.getUsuarios());
-};
+};*/

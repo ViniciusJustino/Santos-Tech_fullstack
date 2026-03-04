@@ -29,11 +29,12 @@ rota.use(rotas.static(diretorio.join(__dirname, '/pages')));
 
 const porta = '8080';
 
-rota.get('/', controller_login.getLogin);
+rota.get('/'     , controller_login.getLogin);
+rota.get('/login', controller_login.getLogin)
 
 rota.post('/login', controller_login.postUsuario);
-rota.get('/home', auth ,controller_home.getHome);
-rota.get('/usuarios', auth , controller_home.getUsuariosCadastrados);
+
+rota.get('/employee/home',controller_home.getHome);
 
 rota.listen(porta, () => {
 

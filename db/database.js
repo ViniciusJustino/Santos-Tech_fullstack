@@ -1,32 +1,28 @@
-const mysql = requise('mysql2/promisse');
+const { createClient } = require('@supabase/supabase-js')
+require('dotenv').config();
 
 class database{
-    pool;
-    dbInstance;
 
-    constructor(){
-        if(!database.dbInstance)
+    constructor()
+    {
+        if(!database.instance)
         {
-            this.pool = mysql.createPool({
-                host: 'localhost',
-                user: 'root',
-                password: '123456',
-                database: 'master',
-                waitForConnections: true
-            });
-        } 
+            this.client = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
-        return database.dbInstance;
+            database.instance = this;
+        }
+
+        return database.instance;
     }
 
-     conexao() {
-        return this.pool;        
+     client() {
+        return this.client;        
     }
 
 }
 
-const dbInstance = database();
+const _instance = new database();
 
-Object.freeze(dbInstance);
+Object.freeze(_instance);
 
-module.exports = dbInstance;
+module.exports = _instance;

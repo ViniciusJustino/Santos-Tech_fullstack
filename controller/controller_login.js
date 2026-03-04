@@ -1,5 +1,5 @@
 const path = require('path');
-const models_usuarios = require('../models/usuario')
+
 
 
 module.exports.postUsuario = (req, res) => {
@@ -15,6 +15,7 @@ module.exports.postUsuario = (req, res) => {
                     if(erro)return res.statua(401);
 
                     req.session.logado = true;
+                    req.session.admin = usuario.admin_id != 0 ? true : false;
                     res.redirect('/home');
                 }
             );
